@@ -13,9 +13,9 @@ STATUS = ((0,_('No Public')),(1,_('Public')))
 
 class Article(models.Model):
 
-	art_title = models.CharField(max_length=200, verbose_name=_('Fullname'))
+	art_title = models.CharField(max_length=200, verbose_name=_('Title'))
 	
-	art_content = models.EmailField(verbose_name=_('Email'))
+	art_content = models.TextField(verbose_name=_('Content'))
 
 	art_status = models.PositiveIntegerField(choices=STATUS, verbose_name=_('Status'),)
 

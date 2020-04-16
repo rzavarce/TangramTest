@@ -9,15 +9,15 @@
 	<section class="py-5">
 		<div class="container">
 			<div class="add_button_container">
-				<a id="authors_add" href="{% url 'authors_add' %}" class="btn btn-primary">Add Author</a>
+				<a id="articles_add" href="{% url 'articles_add' %}" class="btn btn-primary">Add Article</a>
 			</div>
 			
 			{% csrf_token %}
-			<table id="autors_list" class="table table-striped table-bordered autors_list">
+			<table id="articles_list" class="table table-striped table-bordered autors_list">
 	          <thead>
 	            <tr>
-	              <th>Name</th>
-	              <th>Email</th>
+	              <th>Title</th>
+	              <th>Content</th>
 	              <th>Status</th>
 	              <th>Actions</th>
 	            </tr>
@@ -36,7 +36,7 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <p style="color:gray">Do you shore to delete this Author???</p>
+		        <p style="color:gray">Do you shore to delete this Article???</p>
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -53,16 +53,16 @@
 	<script>
 		id_aux_delete=""
 		$(document).ready(function() {
-			$('#autors_list').DataTable({
-				ajax: '/api/v1/authors/?format=datatables',
+			$('#articles_list').DataTable({
+				ajax: '/api/v1/articles/?format=datatables',
 				columns: [
-					{'data': 'aut_name'},
-					{'data': 'aut_email'},
-					{'data': 'aut_status'},
+					{'data': 'art_title'},
+					{'data': 'art_content'},
+					{'data': 'art_status'},
 					{
 						sortable: false,
 						"render": function ( data, type, full, meta ) {
-							return '<a href="/authors/view/'+ full.id +'/" title="View Author" role="button"><i class="far fa-eye dt_pad"> </i></a> <a href="/authors/edit/'+ full.id +'/" title="Edit Author" role="button"><i class="far fa-edit dt_pad" title="Delete Author"> </i></a> <a class="delete_button" onclick="show_delete_modal('+ full.id +')" title="Delete Author"><i class="far fa-trash-alt dt_pad"> </i></a>';
+							return '<a href="/articles/view/'+ full.id +'/" title="View Article" role="button"><i class="far fa-eye dt_pad"> </i></a> <a href="/articles/edit/'+ full.id +'/" title="Edit Article" role="button"><i class="far fa-edit dt_pad" title="Delete Article"> </i></a> <a class="delete_button" onclick="show_delete_modal('+ full.id +')" title="Delete Article"><i class="far fa-trash-alt dt_pad"> </i></a>';
 						}
 					},
 					
@@ -72,17 +72,15 @@
 
 			$('#confirm_delete_button').click(function() { 
 				var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
-
-				//$( "#autors_list" ).ajax.reload( '/api/v1/authors/?format=datatables' );
 				
 				$.ajax({ 
 					data: $('#login_form').serialize(),
 					type: 'DELETE', 
-					url: "/api/v1/authors/"+ id_aux_delete +"/", 
+					url: "/api/v1/articles/"+ id_aux_delete +"/", 
 					headers:{"X-CSRFToken": $crf_token},
 					success: function(response) { 
 
-							$('#autors_list').DataTable().ajax.reload('/api/v1/authors/?format=datatables');
+							$('#articles_list').DataTable().ajax.reload('/api/v1/articles/?format=datatables');
 							$('#delete_modal').modal('hide');
 						 
 					}

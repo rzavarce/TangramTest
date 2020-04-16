@@ -55,7 +55,7 @@ class AuthorViewSet(viewsets.ModelViewSet):
 
 			author.save()
 
-			return serializer
+			return Response(serializer.data)
 		else:
 			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
