@@ -25,9 +25,13 @@ from manager import views as mng_views
 from authors import viewsets as aut_viewsets
 from authors import views as aut_views
 
+from articles import viewsets as art_viewsets
+from articles import views as art_views
+
 
 router = routers.DefaultRouter()
 router.register(r'authors', aut_viewsets.AuthorViewSet)
+router.register(r'articles', art_viewsets.ArticleViewSet)
 
 
 
@@ -40,12 +44,6 @@ urlpatterns = [
 
 	url(r'^$', mng_views.Index, name='index'),
 
-	#url(r'^', include(router.urls)),
-
-
-
-	#path('accounts/', include('django.contrib.auth.urls')),
-
 	url('login/', mng_views.LoginUsers, name='login'),
 	url('logout/', mng_views.LogoutUsers, name='logout'),
 	url('dashboard/', mng_views.Dashboard, name='dashboard'),
@@ -53,18 +51,12 @@ urlpatterns = [
 	url('authors/add/', aut_views.AuthorAdd, name='authors_add'),
 	url('authors/view/(?P<pk>[0-9]+)/', aut_views.AuthorView, name='autors_view'),
 	url('authors/edit/(?P<pk>[0-9]+)/', aut_views.AuthorEdit, name='autors_edit'),
-	#url('authors/delete/(?P<pk>[0-9]+)/', aut_views.AuthorDelete, name='autors_view'),
 	url('authors/', aut_views.AuthorList, name='authors_list'),
 
-
-	#url(r'^autors/(?P<pk>[0-9]+)/$', aut_views.AutorView, name='autors_view'),
-	
-	#url('autors/Edit/(?P<pk>[0-9]+)/', aut_views.AutorEdit, name='autors_edit'),
-
-
-
-    
-
+	url('articles/add/', art_views.ArticleAdd, name='articles_add'),
+	url('articles/view/(?P<pk>[0-9]+)/', art_views.ArticleView, name='articles_view'),
+	url('articles/edit/(?P<pk>[0-9]+)/', art_views.ArticleEdit, name='articles_edit'),
+	url('articles/', art_views.ArticleList, name='articles_list'),
 
 ]
 

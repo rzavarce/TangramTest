@@ -11,82 +11,90 @@
 
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
 
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
 
 
-<link href='{% static 'css/manager.css' %}' rel='stylesheet' type='text/css'>
+	<link href='{% static 'css/manager.css' %}' rel='stylesheet' type='text/css'>
 
 
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+	<script
+	src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 
-  
+
 </head>
 
 <body>
-	 <header>
-	 	<div class="container">
-      <!-- Fixed navbar -->
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="{% url 'dashboard' %}">Tangram Test</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<a class="nav-link active" href="{% url 'dashboard' %}">Dashboard
-							<span class="sr-only">(current)</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'authors_list' %}">Autors</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/">Articles</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/admin/" target="_blank">Admin</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/Contact/">Contact</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'logout' %}">Logout</a>
-					</li>
-				</ul>
-			</div>
-      </nav>
-	</div>
-</header>
+	<header>
+		<div class="container">
+			<!-- Fixed navbar -->
+			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+				<a class="navbar-brand" href="{% url 'dashboard' %}">Tangram Test</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							{% if menu_item == "dashboard" %}
+								<a class="nav-link active" href="{% url 'dashboard' %}">Dashboard</a>
+							{% else %}
+								<a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+							{% endif %}
+						</li>
+						<li class="nav-item">
+							{% if menu_item == "authors" %}
+								<a class="nav-link active" href="{% url 'authors_list' %}">Autors</a>
+							{% else %}
+								<a class="nav-link" href="{% url 'authors_list' %}">Autors</a>
+							{% endif %}
+						</li>
+						<li class="nav-item">
+							{% if menu_item == "articles" %}
+								<a class="nav-link active" href="{% url 'articles_list' %}">Articles</a>
+							{% else %}
+								<a class="nav-link" href="{% url 'articles_list' %}">Articles</a>
+							{% endif %}
+							
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/" target="_blank">Admin</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
 
 	<!-- Begin page content -->
-    <main role="main" class="container">
+	<main role="main" class="container">
 		{% block content %}
-  		{% endblock %}
-    </main>
+		{% endblock %}
+	</main>
 
 	
 
 
 
-    <footer class="footer">
-      <div class="container">
-        <span class="footer_message">Development by: &nbsp<a href="https://www.linkedin.com/in/rogerzavarce/" title="Linkedin: Ing. Roger Zavarce" target="_blank"> Ing. Roger Zavarce</a></span>
-      </div>
-    </footer>
+	<footer class="footer">
+		<div class="container">
+			<span class="footer_message">Development by: &nbsp<a href="https://www.linkedin.com/in/rogerzavarce/" title="Linkedin: Ing. Roger Zavarce" target="_blank"> Ing. Roger Zavarce</a></span>
+		</div>
+	</footer>
 
 
 
 
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
 
 

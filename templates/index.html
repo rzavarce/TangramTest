@@ -16,10 +16,10 @@
 
 
 
-<link href='{% static 'css/login.css' %}' rel='stylesheet' type='text/css'>
+  <link href='{% static 'css/login.css' %}' rel='stylesheet' type='text/css'>
 
 
-<script
+  <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
@@ -28,20 +28,20 @@
 </head>
 
 <body>
-<!-- Page Content -->
-<div class="container-fluid">
-  <div class="row no-gutter">
-    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-    <div class="col-md-8 col-lg-6">
-      <div class="login d-flex align-items-center py-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-9 col-lg-8 mx-auto">
-              <h3 class="login-heading mb-4">Welcome back!</h3>
+  <!-- Page Content -->
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+      <div class="col-md-8 col-lg-6">
+        <div class="login d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 col-lg-8 mx-auto">
+                <h3 class="login-heading mb-4">Welcome back!</h3>
 
-              <form id="login_form">
-              	{% csrf_token %}
-                <div class="form-label-group">
+                <form id="login_form">
+                 {% csrf_token %}
+                 <div class="form-label-group">
                   <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus >
                   <label for="inputEmail">Username</label>
                 </div>
@@ -58,50 +58,50 @@
                 <button id="login_submit" class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="button">Sign in</button>
                 <div class="text-center">
                   <a class="small" href="#">Forgot password?</a></div>
-              </form>
-            </div>
-            <div class="col-md-9 col-lg-8 mx-auto">
-            	<div id="errors_container">
-            		
-            	</div>
-            </div>	
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+                </form>
+              </div>
+              <div class="col-md-9 col-lg-8 mx-auto">
+               <div id="errors_container">
+                
+               </div>
+             </div>	
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
 
 
 
-<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+ <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
 
-<script type="text/javascript">
-	
+ <script type="text/javascript">
+   
 
-	$(document).ready(function() {
-		$('#login_submit').click(function() { 
-				
-			$('#errors_container').html("");
+   $(document).ready(function() {
+    $('#login_submit').click(function() { 
+      
+     $('#errors_container').html("");
 
-			$.ajax({ 
-				data: $('#login_form').serialize(),
-				type: 'POST', 
-				url: "{% url 'login' %}", 
-				success: function(response) { 
+     $.ajax({ 
+      data: $('#login_form').serialize(),
+      type: 'POST', 
+      url: "{% url 'login' %}", 
+      success: function(response) { 
 
-					if(response.status){
-						window.location.href = "{% url 'dashboard' %}";
-					}else{
-						$('#errors_container').html('<div class="alert alert-danger" role="alert">'+ response.msg +'</div>');
-					}
-				    
-				}
-			});
+       if(response.status){
+        window.location.href = "{% url 'dashboard' %}";
+      }else{
+        $('#errors_container').html('<div class="alert alert-danger" role="alert">'+ response.msg +'</div>');
+      }
+      
+    }
+  });
 
-		});
-	});
+   });
+  });
 
 
 </script>

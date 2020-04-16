@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Page Content -->
+<section class="py-5">
+	<div class="container">
+		<div class="my-3 p-3 bg-white rounded box-shadow forms">
+			<h6 class="border-bottom border-gray pb-2 mb-0">Add Article</h6>
+			<br>
+			<form id="edit_form">
+				<div class="form-group">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<button id="add_button" type="button" class="btn btn-primary">Submit</button>
+					<button id="cancel_button" type="button" class="btn btn-secondary">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</section>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js" type="text/javascript" charset="utf-8" async defer></script>
+
+	<script>
+
+		$(document).ready(function() {
+
+			$( "input" ).addClass( "form-control" );
+			$( "select" ).addClass( "form-control" );
+			$( "textarea" ).addClass( "form-control" );
+			$('#cancel_button').click(function() { 
+				window.location.href = "{% url 'articles_list' %}";
+			});
+			$('#add_button').click(function() { 
+
+				if($('#edit_form').valid()){
+					var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+					$.ajax({ 
+						data: $('#edit_form').serialize(),
+						type: 'PUT', 
+						url: "/api/v1/articles/{{ article_id }}/", 
+						headers:{"X-CSRFToken": $crf_token},
+						success: function(response) { 
+							window.location.href = "{% url 'articles_list' %}";
+						}
+					});
+				}
+			});
+
+		$('#edit_form').validate({
+			// Specify validation rules
+			rules: {
+
+				aut_name: "required",
+				aut_email: {
+					required: true,
+					email: true
+				},
+				aut_status: "required",
+			},
+				// Specify validation error messages
+				messages: {
+					aut_name: 'Please enter your Fullname',
+					aut_email: 'Please enter a valid email address',
+					aut_status: 'Please select a status',
+				},
+
+				submitHandler: function(form) {
+					form.submit();
+				}
+			});
+
+		});
+
+	</script>
+
+{% endblock %}

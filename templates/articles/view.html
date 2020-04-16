@@ -11,46 +11,46 @@
 	<div class="container">
 
 		<div class="my-3 p-3 bg-white rounded box-shadow">
-			<h6 class="border-bottom border-gray pb-2 mb-0">Author: @{{author.aut_name|capfirst}}</h6>
+			<h6 class="border-bottom border-gray pb-2 mb-0">Articles: {{article.art_title|truncatechars:20}}</h6>
 			<div class="media text-muted pt-3">
 				<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="text-gray-dark">ID:</strong> {{author.id}}
+					<strong class="text-gray-dark">ID:</strong> {{article.id}}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="text-gray-dark">Name:</strong> {{author.aut_name|capfirst}}
+					<strong class="text-gray-dark">Name:</strong> {{article.art_content|capfirst}}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="text-gray-dark">Email:</strong> {{author.aut_email}}
+					<strong class="text-gray-dark">Email:</strong> {{article.art_status}}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="text-gray-dark">Status:</strong> {{author.aut_status}}
+					<strong class="text-gray-dark">Status:</strong> {{article.art_status}}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="text-gray-dark">Creation Date:</strong> {{author.aut_created_date}}
+					<strong class="text-gray-dark">Creation Date:</strong> {{article.art_created_date}}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="text-gray-dark">Modification Date:</strong> {{author.aut_modified_date}}
+					<strong class="text-gray-dark">Modification Date:</strong> {{article.art_modified_date}}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="text-gray-dark">Created By:</strong> {{author.aut_creator}}
+					<strong class="text-gray-dark">Created By:</strong> {{article.art_creator}}
 				</p>
 			</div>
 
 
 			<small class="d-block text-right mt-3">
-				<a href="{% url 'authors_list' %}">Back to list</a>
+				<a href="{% url 'articles_list' %}">Back to list</a>
 			</small>
 		</div>
 

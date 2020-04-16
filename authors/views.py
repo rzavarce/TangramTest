@@ -13,7 +13,9 @@ def AuthorList(request):
     """
 
 	if request.user.is_authenticated:
-		return render(request, 'authors/list.html',)
+		context={}
+		context['menu_item'] = 'authors'
+		return render(request, 'authors/list.html',context)
 
 	return redirect('/')	
 
@@ -27,6 +29,7 @@ def AuthorView(request, pk):
 	if request.user.is_authenticated:
 		context={}
 		context['author'] = Author.objects.get(pk=pk)
+		context['menu_item'] = 'authors'
 		return render(request, 'authors/view.html', context)
 	
 	return redirect('/')	
@@ -41,6 +44,7 @@ def AuthorAdd(request):
 	if request.user.is_authenticated:
 		context={}
 		context['form'] = AuthorFormAdd
+		context['menu_item'] = 'authors'
 		return render(request, 'authors/add.html',context)
 	
 	return redirect('/')	
@@ -58,6 +62,7 @@ def AuthorEdit(request, pk):
 		context['author_name'] = author.aut_name 
 		context['author_id'] = author.id
 		context['form'] = AuthorFormEdit(instance=author)
+		context['menu_item'] = 'authors'
 		return render(request, 'authors/edit.html',context)
 	
 	return redirect('/')	

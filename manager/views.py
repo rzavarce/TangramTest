@@ -66,7 +66,9 @@ def Dashboard(request):
     """
 
 	if request.user.is_authenticated:
-		return render(request, 'dashboard.html',)
+		context={}
+		context['menu_item'] = 'dashboard'
+		return render(request, 'dashboard.html',context)
 
 	return redirect('/')	
 
