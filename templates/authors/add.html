@@ -9,7 +9,7 @@
 		<div class="my-3 p-3 bg-white rounded box-shadow forms">
 			<h6 class="border-bottom border-gray pb-2 mb-0">Add Author</h6>
 			<br>
-			<form id="edit_form">
+			<form id="add_form">
 				<div class="form-group">
 					{% csrf_token %}
 					{{ form.as_p }}
@@ -34,13 +34,11 @@
 			});
 			$('#add_button').click(function() { 
 
-				if($('#edit_form').valid()){
-					var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+				if($('#add_form').valid()){
 					$.ajax({ 
-						data: $('#edit_form').serialize(),
-						type: 'PUT', 
-						url: "/api/v1/authors/{{ author_id }}/", 
-						headers:{"X-CSRFToken": $crf_token},
+						data: $('#add_form').serialize(),
+						type: 'POST', 
+						url: "/api/v1/authors/", 
 						success: function(response) { 
 							window.location.href = "{% url 'authors_list' %}";
 						}
@@ -48,7 +46,7 @@
 				}
 			});
 
-		$('#edit_form').validate({
+		$('#add_form').validate({
 			// Specify validation rules
 			rules: {
 

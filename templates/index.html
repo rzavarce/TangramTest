@@ -81,15 +81,15 @@
 	
 
 	$(document).ready(function() {
-		$('#login_submit').click(function() { // catch the form's submit event
+		$('#login_submit').click(function() { 
 				
 			$('#errors_container').html("");
 
-			$.ajax({ // create an AJAX call...
-				data: $('#login_form').serialize(), // get the form data
-				type: 'POST', // GET or POST
-				url: "{% url 'login' %}", // the file to call
-				success: function(response) { // on success..
+			$.ajax({ 
+				data: $('#login_form').serialize(),
+				type: 'POST', 
+				url: "{% url 'login' %}", 
+				success: function(response) { 
 
 					if(response.status){
 						window.location.href = "{% url 'dashboard' %}";

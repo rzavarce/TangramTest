@@ -8,6 +8,10 @@
 
 	<section class="py-5">
 		<div class="container">
+			<div class="add_button_container">
+				<a id="authors_add" href="{% url 'authors_add' %}" class="btn btn-primary">Add Author</a>
+			</div>
+			
 
 			<table id="autors_list" class="table table-striped table-bordered autors_list">
 	          <thead>
@@ -22,11 +26,32 @@
 
 		</div>
 
+		<div id="delete_modal" class="modal" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title"><h6>Delete Modal</h6></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p style="color:gray">Do you shore to delete this Author???</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		        <button type="button" class="btn btn-danger" id="confirm_delete_button" data-id="">Delete</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 	</section>
 
 	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	<script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 	<script>
+		id_aux_delete=""
 		$(document).ready(function() {
 			$('#autors_list').DataTable({
 				ajax: '/api/v1/authors/?format=datatables',
@@ -37,15 +62,37 @@
 					{
 						sortable: false,
 						"render": function ( data, type, full, meta ) {
-							return '<a href="/authors/view/'+ full.id +'/" title="View Author" role="button"><i class="far fa-eye dt_pad"> </i></a> <a href="/authors/edit/'+ full.id +'/" title="Edit Author" role="button"><i class="far fa-edit dt_pad" title="Delete Author"> </i></a> <a href="/authors/delete/'+ full.id +'/" title="Delete Author" role="button"><i class="far fa-trash-alt dt_pad"> </i></a>';
+							return '<a href="/authors/view/'+ full.id +'/" title="View Author" role="button"><i class="far fa-eye dt_pad"> </i></a> <a href="/authors/edit/'+ full.id +'/" title="Edit Author" role="button"><i class="far fa-edit dt_pad" title="Delete Author"> </i></a> <a class="delete_button" onclick="show_delete_modal('+ full.id +')" title="Delete Author"><i class="far fa-trash-alt dt_pad"> </i></a>';
 						}
 					},
 					
               ],
              
-
 			});
+
+			$('#confirm_delete_button').click(function() { 
+
+				$.ajax({ 
+					data: $('#login_form').serialize(),
+					type: 'POST', 
+					url: "{% url 'login' %}", 
+					success: function(response) { 
+						if(response.status){
+							window.location.href = "{% url 'dashboard' %}";
+						}else{
+							$('#errors_container').html('<div class="alert alert-danger" role="alert">'+ response.msg +'</div>');
+						}   
+					}
+				});
+			
+			
+			});
+
 		});
+		function show_delete_modal(id){
+				$('#delete_modal').modal('show');
+				id_aux_delete=id;
+			}
 	</script>
 
 
