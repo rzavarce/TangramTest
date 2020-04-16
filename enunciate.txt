@@ -1,0 +1,56 @@
+ 
+
+Preguntas (máx 30 min)
+
+Qué son lo decoradores de Python
+- Cómo pueden pasarse parámetros a una función en Python (valor, referencia...)
+- Qué diferencias existen entre List, Sets y Dictionaries en Python?
+- Qué es una prueba unitaria
+- Definir los componentes de la arquitectura de Django (Model, Vista, Controlador, Plantillas)
+- Definir los distintos tipos de herencia de clases de Django
+Prueba (máx 2 horas)
+
+Crear un proyecto Django que a través de una interface REST permita listar, crear, editar y borrar elementos de las siguientes clases:
+Autor (nombre, email)
+Articulo (autores, titulo, contenido)
+Se valorará la implementación de pruebas unitarias o alguna función que muestre el funcionamiento
+Las respuestas y el código de la prueba nos lo envías en este mismo hilo, de acuerdo?
+
+
+    def create(self, validated_data):
+        """
+        Create and return a new `Snippet` instance, given the validated data.
+        """
+        print(self.request.user)
+
+        '''
+        autor = Autor.objects.create(
+        	aut_name = validated_data['aut_name'],
+			aut_email = validated_data['aut_email'],
+			aut_status = validated_data['aut_status'],
+			aut_created_date = timezone.now(),
+			aut_modified_date = timezone.now(),
+			aut_creator = self.request.user,
+
+        )
+        '''
+        autor = Autor()
+        autor.aut_name = validated_data['aut_name']
+        autor.aut_email = validated_data['aut_email']
+        autor.aut_status = validated_data['aut_status']
+        autor.aut_created_date = timezone.now()
+        autor.aut_modified_date = timezone.now()
+        autor.aut_creator = self.request.user
+
+
+
+
+
+
+        return autor
+        #return Autor.objects.create(**validated_data)
+
+
+
+
+        
