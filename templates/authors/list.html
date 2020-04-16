@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+	<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+
+	<section class="py-5">
+		<div class="container">
+
+			<table id="autors_list" class="table table-striped table-bordered autors_list">
+	          <thead>
+	            <tr>
+	              <th>Name</th>
+	              <th>Email</th>
+	              <th>Status</th>
+	              <th>Actions</th>
+	            </tr>
+	          </thead>
+	        </table>
+
+		</div>
+
+	</section>
+
+	<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#autors_list').DataTable({
+				ajax: '/api/v1/authors/?format=datatables',
+				columns: [
+					{'data': 'aut_name'},
+					{'data': 'aut_email'},
+					{'data': 'aut_status'},
+					{
+						sortable: false,
+						"render": function ( data, type, full, meta ) {
+							return '<a href="/authors/view/'+ full.id +'/" title="View Author" role="button"><i class="far fa-eye dt_pad"> </i></a> <a href="/authors/edit/'+ full.id +'/" title="Edit Author" role="button"><i class="far fa-edit dt_pad" title="Delete Author"> </i></a> <a href="/authors/delete/'+ full.id +'/" title="Delete Author" role="button"><i class="far fa-trash-alt dt_pad"> </i></a>';
+						}
+					},
+					
+              ],
+             
+
+			});
+		});
+	</script>
+
+
+{% endblock %}

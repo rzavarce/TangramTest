@@ -1,0 +1,105 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  font-family: Montserrat;
+  background-color: #22262B;
+  color: white;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #333940;
+  text-align: right;
+}
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+
+h1{
+  font-size: 60px;
+  font-family: Pacifico;
+}
+
+h3{
+  font-size: 40px;
+}
+
+
+.title{
+  font-size: 40px;
+  margin-top: 60px;
+}
+
+
+
+.footer_message{
+  padding-top: 5px;
+  margin-bottom:20px;
+}
+
+.product-device {
+  position: absolute;
+  right: 10%;
+  bottom: -30%;
+  width: 300px;
+  height: 540px;
+  background-color: #333;
+  border-radius: 21px;
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.product-device::before {
+  position: absolute;
+  top: 10%;
+  right: 10px;
+  bottom: 10%;
+  left: 10px;
+  content: "";
+  background-color: rgba(255, 255, 255, .1);
+  border-radius: 5px;
+}
+
+.product-device-2 {
+  top: -25%;
+  right: auto;
+  bottom: 0;
+  left: 5%;
+  background-color: #e5e5e5;
+}
+
+
+.autors_list {
+  
+  color:white;
+
+}
+
+
+.dt_pad {
+  
+  cursor: pointer;
+
+}
+
+.dt_pad:hover {
+  
+  color:red;
+
+}
