@@ -2,7 +2,7 @@
 This is a Initial Knowledge Test from demostrate experience in Python and Django Frameword.
 
 
-QuickStart for Unix Based Sistems:
+__QuickStart for Unix Based Sistems:__
 
 Descargar el repo desde el siguiente link y escomprimir el archivo en un directorio:
   
